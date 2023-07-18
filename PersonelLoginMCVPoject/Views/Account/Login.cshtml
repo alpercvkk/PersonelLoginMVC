@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+}
+
+ @model LoginModel
+
+ <style>
+     .form-signin {
+         width : 100%;
+         max-width :330px;
+         padding: 15px;
+         margin: auto;
+     }
+ </style>
+ 
+ <main class="form-signin">
+     <form asp-controller="Account" asp-action="Login" method="post">
+         <div class="form-floating">
+            <input type="text" asp-for="UserName" class="form-control" id="floatingInput" placeholder="kullanıcı adı giriniz" />
+            <label for="floatingInput">Kullanıcı Adı</label>
+            <span asp-validation-for="UserName"></span>
+         </div>
+        <div class="form-floating">
+            <input type="password" asp-for="Password" class="form-control" id="floatingInput" placeholder="Parola giriniz" />
+            <label for="floatingInput">Parola</label>
+            <span asp-validation-for="Password"></span>
+        </div>
+        
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" asp-for="RememberMe" value="remember-me" /> Beni Hatırla
+            </label>
+        </div>
+  
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Oturum Aç</button>
+        <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
+     </form>
+ </main>
+

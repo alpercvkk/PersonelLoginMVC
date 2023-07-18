@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+@model Personel
+
+<div class="mb-3"> <h2>Personel Güncelleme Ekranı </h2> </div>
+
+
+
+<form asp-controller="PersonelListele" asp-action="Update" method="post">
+    <div class="row justify-content-around mb-3">
+        <div class="col-1">
+            <label class="form-label"> İsim:</label>
+        </div>
+        <div class="col-11">
+            <input asp-for="Ad" type="text" class="form-control" />
+        </div>
+    </div>
+    <div class="row justify-content-around mb-3">
+        <div class="col-1">
+            <label class="form-label"> Soyad:</label>
+        </div>
+        <div class="col-11">
+            <input asp-for="Soyad" type="text" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-1"> <label> Yaş:</label> </div>
+        <div class="col-11">  <input asp-for="Yas" type="number" />  </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-1"> <label> Cinsiyet:</label></div>
+        <div class="col-11">
+            @Html.RadioButtonFor(x=> x.Cinsiyet, "E",false)@Html.Label("Erkek")
+            @Html.RadioButtonFor(x=> x.Cinsiyet, "K",false)@Html.Label("Kadın")
+        </div>
+
+    </div>
+    <div class="row mb-3">
+        <div class="col-1"> <label> İl:  </label> </div>
+        <div class="col-11">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" asp-for="Il">
+                <option disabled="disabled" selected>İl Seçiniz... </option>
+                @foreach (var item in (List<Personel>)ViewBag.Adresler)
+                {
+                    <option value="@item.Il">@item.Il</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-1"><label>İlçe</label></div>
+        <div class="col-11 ">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" asp-for="Ilce">
+                <option disabled="disabled" selected>İlçe Seçiniz...</option>
+                @foreach (var item in (List<Personel>)ViewBag.Adresler)
+                {
+                    <option value="@item.Ilce">@item.Ilce</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-1"> <label>Adres:</label></div>
+        <div class="col-11">
+            <div class="form-floating">
+                <textarea asp-for=Adres class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                <label for="floatingTextarea">Lütfen Adresinizi Giriniz...</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-end mb-3">
+        <div class="col-auto">
+            <a asp-action="Index" class="btn btn-secondary" type="Button"> Vazgeç </a>
+            <input class="btn btn-primary justify-content-end" type="submit" value="Güncelle">
+        </div>
+    </div>
+
+</form>
